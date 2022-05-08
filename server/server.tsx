@@ -2,17 +2,14 @@ import express from 'express'
 
 const app = express()
 
-app.use(express.static('public'));
-
-app.set('views', 'public');
-app.set('view engine', 'html');
+app.use(express.static('dist.client'));
 
 const port = process.env.PORT || 3000
 
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('(.*)', (req, res) => {
+    res.sendFile('index.html', { root: '.' })
 })
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Listening on port: ${port}`)
 })

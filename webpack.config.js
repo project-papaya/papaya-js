@@ -3,13 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './client/index.tsx',
-    mode: 'development',
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'dist.client'),
     },
     resolve: {
-        extensions: ['.tsx']
+        extensions: ['.js', '.tsx']
     },
     module: {
         rules: [
@@ -27,4 +26,10 @@ module.exports = {
         template: './client/index.html',
         publicPath: '/',
     })],
+    devServer: {
+        hot: true,
+        proxy: {
+            '/': 'http://localhost:3000',
+        },
+    },
 };
