@@ -2,7 +2,7 @@ import express from 'express'
 
 const app = express()
 
-app.use(express.static('dist.client'));
+app.use(express.static('dist.client', { index: false }));
 
 const port = process.env.PORT || 3000
 
